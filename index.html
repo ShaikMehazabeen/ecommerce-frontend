@@ -401,6 +401,100 @@
         </div>
 
     </div>
+    <!-- QUICK VIEW MODAL -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <div class="modal" id="quick-view-modal">
+
+        <!-- Modal Close -->
+        <button class="modal-close" id="modal-close">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Modal Content -->
+        <div class="modal-content">
+
+            <!-- Modal Image -->
+            <div class="modal-image">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" 
+                     alt="Product" id="modal-img">
+                <span class="modal-badge">New</span>
+            </div>
+
+            <!-- Modal Info -->
+            <div class="modal-info">
+                <span class="modal-category" id="modal-category">Electronics</span>
+                <h2 id="modal-title">Premium Smart Watch</h2>
+
+                <div class="modal-rating">
+                    <span>⭐⭐⭐⭐⭐</span>
+                    <span>(120 reviews)</span>
+                </div>
+
+                <div class="modal-price">
+                    <span class="modal-current-price" id="modal-price">5999/-</span>
+                    <span class="modal-old-price">14999/-</span>
+                    <span class="modal-discount">33% OFF</span>
+                </div>
+
+                <p class="modal-description">
+                    Experience the perfect blend of style and technology. 
+                    This premium smart watch features heart rate monitoring, 
+                    GPS tracking, and 7-day battery life.
+                </p>
+
+                <!-- Color Options -->
+                <div class="modal-colors">
+                    <h4>Color:</h4>
+                    <div class="color-options">
+                        <span class="color-btn active" style="background:#1a1a2e"></span>
+                        <span class="color-btn" style="background:#e94560"></span>
+                        <span class="color-btn" style="background:#C0C0C0"></span>
+                        <span class="color-btn" style="background:#28a745"></span>
+                    </div>
+                </div>
+
+                <!-- Size Options -->
+                <div class="modal-sizes">
+                    <h4>Size:</h4>
+                    <div class="size-options">
+                        <span class="size-btn">S</span>
+                        <span class="size-btn active">M</span>
+                        <span class="size-btn">L</span>
+                        <span class="size-btn">XL</span>
+                    </div>
+                </div>
+
+                <!-- Quantity -->
+                <div class="modal-quantity">
+                    <h4>Quantity:</h4>
+                    <div class="qty-control">
+                        <button onclick="modalDecreaseQty()">−</button>
+                        <span id="modal-qty">1</span>
+                        <button onclick="modalIncreaseQty()">+</button>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="modal-buttons">
+                    <button class="modal-add-cart" onclick="modalAddToCart()">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="modal-wishlist">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+
+                <!-- Features -->
+                <div class="modal-features">
+                    <span><i class="fas fa-truck"></i> Free Shipping</span>
+                    <span><i class="fas fa-undo"></i> Easy Returns</span>
+                    <span><i class="fas fa-shield-alt"></i> 2 Year Warranty</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
         <script src="scripts/app.js"></script>
 
 

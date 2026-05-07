@@ -141,3 +141,115 @@ function updateCartTotal() {
     document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
     document.getElementById('cart-count').textContent = `(${items.length} items)`;
 }
+// ── Quick View Modal ──
+const modalOverlay = document.getElementById('modal-overlay');
+const quickViewModal = document.getElementById('quick-view-modal');
+const modalClose = document.getElementById('modal-close');
+
+// Product Data
+const products = [
+    {
+        title: 'Premium Smart Watch',
+        category: 'Electronics',
+        price: '9999/-',
+        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500'
+    },
+    {
+        title: 'Running Sneakers',
+        category: 'Fashion',
+        price: '5999/-',
+        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500'
+    },
+    {
+        title: 'Wireless Headphones',
+        category: 'Electronics',
+        price: '7999/-',
+        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'
+    },
+    {
+        title: 'Modern Desk Lamp',
+        category: 'Home',
+        price: '3999/-',
+        image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500'
+    },
+    {
+        title: 'Leather Handbag',
+        category: 'Fashion',
+        price: '4999/-',
+        image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500'
+    },
+    {
+        title: 'Indoor Plant Set',
+        category: 'Home',
+        price: '2999/-',
+        image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500'
+    }
+];
+
+// Open Modal
+const quickViewBtns = document.querySelectorAll('.quick-view');
+quickViewBtns.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+        const product = products[index];
+        document.getElementById('modal-title').textContent = product.title;
+        document.getElementById('modal-category').textContent = product.category;
+        document.getElementById('modal-price').textContent = product.price;
+        document.getElementById('modal-img').src = product.image;
+        document.getElementById('modal-qty').textContent = '1';
+        quickViewModal.classList.add('active');
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Close Modal
+function closeModal() {
+    quickViewModal.classList.remove('active');
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+modalClose.addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', closeModal);
+
+// Modal Quantity
+function modalIncreaseQty() {
+    const qty = document.getElementById('modal-qty');
+    qty.textContent = parseInt(qty.textContent) + 1;
+}
+
+function modalDecreaseQty() {
+    const qty = document.getElementById('modal-qty');
+    if (parseInt(qty.textContent) > 1) {
+        qty.textContent = parseInt(qty.textContent) - 1;
+    }
+}
+
+// Modal Add to Cart
+function modalAddToCart() {
+    cartCount++;
+    document.querySelector('.cart-badge').textContent = cartCount;
+    const btn = document.querySelector('.modal-add-cart');
+    btn.textContent = '✅ Added to Cart!';
+    btn.style.background = '#28a745';
+    setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+        btn.style.background = '#e94560';
+        closeModal();
+    }, 1500);
+}
+
+// Color & Size Selection
+document.querySelectorAll('.color-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    });
+});
+
+document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    });
+});
