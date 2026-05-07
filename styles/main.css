@@ -169,3 +169,169 @@ a {
         font-size: 20px;
     }
 }
+/* ── Hero Section ── */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 80px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 90vh;
+    color: white;
+    overflow: hidden;
+}
+
+/* ── Hero Content ── */
+.hero-content {
+    flex: 1;
+    max-width: 550px;
+}
+
+.hero-tag {
+    background: #e94560;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.hero-content h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 20px 0;
+    color: white;
+}
+
+.hero-content h1 span {
+    color: #e94560;
+}
+
+.hero-content p {
+    font-size: 16px;
+    color: #a8b2d8;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* ── Hero Buttons ── */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.btn-primary {
+    background: #e94560;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background: #c73652;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(233, 69, 96, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid white;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: #1a1a2e;
+    transform: translateY(-3px);
+}
+
+/* ── Hero Stats ── */
+.hero-stats {
+    display: flex;
+    gap: 40px;
+}
+
+.stat h3 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #e94560;
+}
+
+.stat p {
+    font-size: 13px;
+    color: #a8b2d8;
+    margin: 0;
+}
+
+/* ── Hero Image ── */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ── Float Animation ── */
+@keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ── Hero Responsive ── */
+@media (max-width: 968px) {
+    .hero {
+        flex-direction: column;
+        padding: 40px 30px;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .hero-image {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-stats {
+        gap: 20px;
+    }
+}
