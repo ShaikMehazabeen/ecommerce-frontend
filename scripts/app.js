@@ -253,3 +253,31 @@ document.querySelectorAll('.size-btn').forEach(btn => {
         btn.classList.add('active');
     });
 });
+// ── Sticky Header on Scroll ──
+const header = document.querySelector('.header');
+const scrollTopBtn = document.getElementById('scroll-top');
+
+window.addEventListener('scroll', () => {
+
+    // Sticky Header Shadow
+    if (window.scrollY > 80) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+
+    // Show/Hide Scroll to Top Button
+    if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+    } else {
+        scrollTopBtn.classList.remove('visible');
+    }
+});
+
+// ── Scroll to Top ──
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});

@@ -1354,3 +1354,42 @@ a {
         width: 95%;
     }
 }
+/* ── Sticky Header Shadow on Scroll ── */
+.header.scrolled {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    padding: 10px 30px;
+    transition: all 0.3s ease;
+}
+
+/* ── Scroll to Top Button ── */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background: #e94560;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(233,69,96,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background: #c73652;
+    transform: translateY(-5px);
+}
