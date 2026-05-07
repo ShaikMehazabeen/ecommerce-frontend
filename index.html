@@ -309,6 +309,98 @@
         </div>
 
     </footer>  
+    <!-- CART SIDEBAR -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+
+        <!-- Cart Header -->
+        <div class="cart-header">
+            <h2>🛒 Your Cart <span id="cart-count">(3 items)</span></h2>
+            <button class="close-cart" id="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items -->
+        <div class="cart-items" id="cart-items">
+
+            <!-- Item 1 -->
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100" alt="Watch">
+                <div class="cart-item-info">
+                    <h4>Premium Smart Watch</h4>
+                    <span class="cart-item-price">9999/-</span>
+                    <div class="cart-item-qty">
+                        <button onclick="decreaseQty(this)">−</button>
+                        <span>1</span>
+                        <button onclick="increaseQty(this)">+</button>
+                    </div>
+                </div>
+                <button class="remove-item" onclick="removeItem(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100" alt="Shoes">
+                <div class="cart-item-info">
+                    <h4>Running Sneakers</h4>
+                    <span class="cart-item-price">5999/-</span>
+                    <div class="cart-item-qty">
+                        <button onclick="decreaseQty(this)">−</button>
+                        <span>2</span>
+                        <button onclick="increaseQty(this)">+</button>
+                    </div>
+                </div>
+                <button class="remove-item" onclick="removeItem(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100" alt="Headphones">
+                <div class="cart-item-info">
+                    <h4>Wireless Headphones</h4>
+                    <span class="cart-item-price">7999/-</span>
+                    <div class="cart-item-qty">
+                        <button onclick="decreaseQty(this)">−</button>
+                        <span>1</span>
+                        <button onclick="increaseQty(this)">+</button>
+                    </div>
+                </div>
+                <button class="remove-item" onclick="removeItem(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Cart Footer -->
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">29996/-</span>
+            </div>
+            <div class="cart-shipping">
+                <span>Shipping:</span>
+                <span class="free-shipping">FREE</span>
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">29996/-</span>
+            </div>
+            <button class="checkout-btn">
+                Proceed to Checkout →
+            </button>
+            <button class="continue-shopping" id="continue-shopping">
+                ← Continue Shopping
+            </button>
+        </div>
+
+    </div>
         <script src="scripts/app.js"></script>
 
 
