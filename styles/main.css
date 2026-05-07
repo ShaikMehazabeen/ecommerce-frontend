@@ -1,6 +1,171 @@
-body {
-    font-family: Arial, sans-serif;
+/* ── Reset & Base ── */
+* {
     margin: 0;
     padding: 0;
-    text-align: center;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ── Header ── */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1a1a2e;
+    color: white;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* ── Logo ── */
+.logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e94560;
+    letter-spacing: 1px;
+}
+
+/* ── Navbar ── */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.navbar ul li a {
+    color: white;
+    font-size: 15px;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+    color: #e94560;
+    border-bottom: 2px solid #e94560;
+}
+
+/* ── Header Right ── */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ── Search Bar ── */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    padding: 5px 10px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 14px;
+    width: 180px;
+    color: #333;
+}
+
+.search-bar button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #1a1a2e;
+    font-size: 14px;
+    padding: 5px;
+}
+
+/* ── Cart Icon ── */
+.cart-icon {
+    position: relative;
+}
+
+.cart-icon a {
+    color: white;
+    font-size: 22px;
+}
+
+.cart-icon a:hover {
+    color: #e94560;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e94560;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Hamburger ── */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+/* ── Responsive: Tablet & Mobile ── */
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: block;
+    }
+
+    .navbar {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background-color: #1a1a2e;
+        padding: 20px;
+        z-index: 999;
+    }
+
+    .navbar.active {
+        display: block;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-bar input {
+        width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar {
+        display: none;
+    }
+
+    .logo a {
+        font-size: 20px;
+    }
 }

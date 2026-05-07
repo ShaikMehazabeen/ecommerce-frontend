@@ -5,11 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce Frontend</title>
     <link rel="stylesheet" href="styles/main.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Our Online Store</h1>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index.html">🛒 ShopEasy</a>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Right Side: Search + Cart -->
+        <div class="header-right">
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" placeholder="Search products...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <!-- Cart Icon -->
+            <div class="cart-icon">
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">3</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+
     </header>
+
     <script src="scripts/app.js"></script>
 </body>
 </html>
