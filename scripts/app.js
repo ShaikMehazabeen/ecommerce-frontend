@@ -55,3 +55,21 @@ function addToCart(button) {
         button.style.background = '#1a1a2e';
     }, 2000);
 }
+// ── Newsletter Subscribe ──
+function subscribeNewsletter() {
+    const input = document.querySelector('.newsletter-form input');
+    const email = input.value.trim();
+
+    if (email === '') {
+        alert('Please enter your email!');
+        return;
+    }
+
+    if (!email.includes('@')) {
+        alert('Please enter a valid email!');
+        return;
+    }
+
+    alert(`✅ Thank you for subscribing with ${email}!`);
+    input.value = '';
+}
