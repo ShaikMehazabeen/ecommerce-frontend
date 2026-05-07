@@ -1,4 +1,36 @@
-<!DOCTYPE html>
+<!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">New Arrivals 2025 🔥</span>
+            <h1>Discover The Best <br> <span>Products Online</span></h1>
+            <p>Shop the latest trends with unbeatable prices. <br> Free shipping on orders over $50!</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">Shop Now 🛒</a>
+                <a href="#" class="btn-secondary">Explore Deals</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h3>10K+</h3>
+                    <p>Products</p>
+                </div>
+                <div class="stat">
+                    <h3>50K+</h3>
+                    <p>Customers</p>
+                </div>
+                <div class="stat">
+                    <h3>4.9⭐</h3>
+                    <p>Rating</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://img.freepik.com/free-vector/shopping-concept-landing-page_52683-18650.jpg" 
+                 alt="Shopping Banner">
+        </div>
+    </section>
+    
+    
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,37 +85,160 @@
         </div>
 
     </header>
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <span class="hero-tag">New Arrivals 2026 🔥</span>
-            <h1>Discover The Best <br> <span>Products Online</span></h1>
-            <p>Shop the latest trends with unbeatable prices. <br> Free shipping on orders over 5000/-!</p>
-            <div class="hero-buttons">
-                <a href="#" class="btn-primary">Shop Now 🛒</a>
-                <a href="#" class="btn-secondary">Explore Deals</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat">
-                    <h3>10K+</h3>
-                    <p>Products</p>
-                </div>
-                <div class="stat">
-                    <h3>50K+</h3>
-                    <p>Customers</p>
-                </div>
-                <div class="stat">
-                    <h3>4.9⭐</h3>
-                    <p>Rating</p>
-                </div>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="https://img.freepik.com/free-vector/shopping-concept-landing-page_52683-18650.jpg" 
-                 alt="Shopping Banner">
-        </div>
-    </section>
 
-    <script src="scripts/app.js"></script>
-</body>
-</html>
+    
+
+<!-- PRODUCTS SECTION -->
+    <section class="products" id="products">
+
+        <!-- Section Heading -->
+        <div class="section-heading">
+            <h2>Our <span>Featured Products</span></h2>
+            <p>Discover our most popular products at amazing prices</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="electronics">Electronics</button>
+            <button class="filter-btn" data-filter="fashion">Fashion</button>
+            <button class="filter-btn" data-filter="home">Home</button>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="products-grid" id="products-grid">
+
+            <!-- Card 1 -->
+            <div class="product-card" data-category="electronics">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" alt="Watch">
+                    <span class="product-badge">New</span>
+                    <div class="product-overlay">
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Electronics</span>
+                    <h3>Premium Smart Watch</h3>
+                    <div class="product-rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                        <span>(120 reviews)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">9999/-</span>
+                        <span class="old-price">14999/-</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="product-card" data-category="fashion">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" alt="Shoes">
+                    <span class="product-badge sale">Sale</span>
+                    <div class="product-overlay">
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Fashion</span>
+                    <h3>Running Sneakers</h3>
+                    <div class="product-rating">
+                        <span>⭐⭐⭐⭐</span>
+                        <span>(85 reviews)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">5999/-</span>
+                        <span class="old-price">8999/-</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="product-card" data-category="electronics">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" alt="Headphones">
+                    <span class="product-badge">Hot</span>
+                    <div class="product-overlay">
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Electronics</span>
+                    <h3>Wireless Headphones</h3>
+                    <div class="product-rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                        <span>(200 reviews)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">7999/-</span>
+                        <span class="old-price">12999/-</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="product-card" data-category="home">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=300" alt="Lamp">
+                    <span class="product-badge">New</span>
+                    <div class="product-overlay">
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Home</span>
+                    <h3>Modern Desk Lamp</h3>
+                    <div class="product-rating">
+                        <span>⭐⭐⭐⭐</span>
+                        <span>(60 reviews)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">3999/-</span>
+                        <span class="old-price">5999/-</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="product-card" data-category="fashion">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300" alt="Bag">
+                    <span class="product-badge sale">Sale</span>
+                    <div class="product-overlay">
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Fashion</span>
+                    <h3>Leather Handbag</h3>
+                    <div class="product-rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                        <span>(95 reviews)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">4999/-</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>    
+            </div>
+
+        <script src="scripts/app.js"></script>
+
+
+    </body>
+</html>                        
