@@ -371,3 +371,22 @@ function addToCart(button) {
         button.style.background = '#1a1a2e';
     }, 2000);
 }
+// ── Update Header Based on Login State ──
+const isLoggedIn = localStorage.getItem('isLoggedIn');
+const userName = localStorage.getItem('userName');
+const loginBtn = document.querySelector('.login-btn');
+
+if (loginBtn) {
+    if (isLoggedIn === 'true' && userName) {
+        loginBtn.innerHTML = `<i class="fas fa-user"></i> ${userName}`;
+        loginBtn.href = '#';
+        loginBtn.onclick = function() {
+            if (confirm('Do you want to logout?')) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userEmail');
+                window.location.href = 'auth.html';
+            }
+        };
+    }
+}
