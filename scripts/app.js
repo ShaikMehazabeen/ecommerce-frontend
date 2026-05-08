@@ -42,14 +42,16 @@ filterBtns.forEach(btn => {
 });
 
 // ── Add to Cart ──
-let cartCount = 3;
+let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
+document.querySelector('.cart-badge').textContent = cartCount;
 
-function addToCart(button) {
+ffunction addToCart(button) {
     cartCount++;
+    localStorage.setItem('cartCount', cartCount);
     document.querySelector('.cart-badge').textContent = cartCount;
     button.textContent = '✅ Added!';
     button.style.background = '#28a745';
-
+    showToast('success', 'Added to Cart!', 'Item successfully added to your cart');
     setTimeout(() => {
         button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
         button.style.background = '#1a1a2e';
