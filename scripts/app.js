@@ -45,7 +45,7 @@ filterBtns.forEach(btn => {
 let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
 document.querySelector('.cart-badge').textContent = cartCount;
 
-ffunction addToCart(button) {
+function addToCart(button) {
     cartCount++;
     localStorage.setItem('cartCount', cartCount);
     document.querySelector('.cart-badge').textContent = cartCount;

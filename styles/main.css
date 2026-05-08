@@ -1652,3 +1652,21 @@ a {
         width: 95%;
     }
 }
+/* ── Login Button ── */
+.login-btn {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border: 2px solid white;
+    border-radius: 25px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.login-btn:hover {
+    background: #e94560;
+    border-color: #e94560;
+}
