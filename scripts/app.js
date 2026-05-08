@@ -281,3 +281,91 @@ scrollTopBtn.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+// ── Newsletter Popup ──
+const popupOverlay = document.getElementById('popup-overlay');
+const newsletterPopup = document.getElementById('newsletter-popup');
+const popupClose = document.getElementById('popup-close');
+const popupSkip = document.getElementById('popup-skip');
+
+// Show popup after 3 seconds
+setTimeout(() => {
+    newsletterPopup.classList.add('active');
+    popupOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}, 3000);
+
+// Close Popup
+function closePopup() {
+    newsletterPopup.classList.remove('active');
+    popupOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+popupClose.addEventListener('click', closePopup);
+popupSkip.addEventListener('click', closePopup);
+popupOverlay.addEventListener('click', closePopup);
+
+// Subscribe Popup
+function subscribePopup() {
+    const name = document.getElementById('popup-name').value.trim();
+    const email = document.getElementById('popup-email').value.trim();
+
+    if (name === '') {
+        showToast('error', 'Oops!', 'Please enter your name');
+        return;
+    }
+
+    if (email === '' || !email.includes('@')) {
+        showToast('error', 'Oops!', 'Please enter a valid email');
+        return;
+    }
+
+    closePopup();
+    showToast('success', 'Subscribed!', `Welcome ${name}! Your 20% OFF coupon: SAVE20`);
+}
+
+// ── Toast Notification ──
+const toast = document.getElementById('toast');
+let toastTimeout;
+
+function showToast(type, title, message) {
+    const toastTitle = document.getElementById('toast-title');
+    const toastText = document.getElementById('toast-text');
+    const toastIcon = document.querySelector('.toast-icon i');
+
+    toastTitle.textContent = title;
+    toastText.textContent = message;
+
+    if (type === 'error') {
+        toast.classList.add('error');
+        toastIcon.className = 'fas fa-times-circle';
+    } else {
+        toast.classList.remove('error');
+        toastIcon.className = 'fas fa-check-circle';
+    }
+
+    toast.classList.add('active');
+
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        closeToast();
+    }, 4000);
+}
+
+function closeToast() {
+    toast.classList.remove('active');
+}
+
+// ── Update addToCart to use Toast ──
+function addToCart(button) {
+    cartCount++;
+    document.querySelector('.cart-badge').textContent = cartCount;
+    button.textContent = '✅ Added!';
+    button.style.background = '#28a745';
+    showToast('success', 'Added to Cart!', 'Item successfully added to your cart');
+
+    setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+        button.style.background = '#1a1a2e';
+    }, 2000);
+}
