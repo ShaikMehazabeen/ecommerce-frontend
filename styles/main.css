@@ -1,3 +1,21 @@
+/* ── Performance Optimizations ── */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    content-visibility: auto;
+}
+
+/* ── Preload Critical Images ── */
+.hero-image img {
+    loading: eager;
+    fetchpriority: high;
+}
 /* ── Reset & Base ── */
 * {
     margin: 0;

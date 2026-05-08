@@ -259,134 +259,115 @@ document.querySelectorAll('.size-btn').forEach(btn => {
 const header = document.querySelector('.header');
 const scrollTopBtn = document.getElementById('scroll-top');
 
-window.addEventListener('scroll', () => {
+// ── Safe Helper Function ──
+function getEl(id) {
+    return document.getElementById(id);
+}
 
-    // Sticky Header Shadow
-    if (window.scrollY > 80) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
+function getQuery(selector) {
+    return document.querySelector(selector);
+}
 
-    // Show/Hide Scroll to Top Button
-    if (window.scrollY > 300) {
-        scrollTopBtn.classList.add('visible');
-    } else {
-        scrollTopBtn.classList.remove('visible');
-    }
-});
+// ── Cart Sidebar ──
+const cartIconLink = getQuery('.cart-icon a');
+const cartSidebarEl = getEl('cart-sidebar');
+const cartOverlayEl = getEl('cart-overlay');
+const closeCartEl = getEl('close-cart');
+const continueShoppingEl = getEl('continue-shopping');
+const scrollTopBtnEl = getEl('scroll-top');
+const modalCloseEl = getEl('modal-close');
+const modalOverlayEl = getEl('modal-overlay');
 
-// ── Scroll to Top ──
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-// ── Newsletter Popup ──
-const popupOverlay = document.getElementById('popup-overlay');
-const newsletterPopup = document.getElementById('newsletter-popup');
-const popupClose = document.getElementById('popup-close');
-const popupSkip = document.getElementById('popup-skip');
-
-// Show popup after 3 seconds
-setTimeout(() => {
-    newsletterPopup.classList.add('active');
-    popupOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}, 3000);
-
-// Close Popup
-function closePopup() {
-    newsletterPopup.classList.remove('active');
-    popupOverlay.classList.remove('active');
+function closeCartSidebarSafe() {
+    if (cartSidebarEl) cartSidebarEl.classList.remove('active');
+    if (cartOverlayEl) cartOverlayEl.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-popupClose.addEventListener('click', closePopup);
-popupSkip.addEventListener('click', closePopup);
-popupOverlay.addEventListener('click', closePopup);
-
-// Subscribe Popup
-function subscribePopup() {
-    const name = document.getElementById('popup-name').value.trim();
-    const email = document.getElementById('popup-email').value.trim();
-
-    if (name === '') {
-        showToast('error', 'Oops!', 'Please enter your name');
-        return;
+function closeModalSafe() {
+    if (getEl('quick-view-modal')) {
+        getEl('quick-view-modal').classList.remove('active');
     }
-
-    if (email === '' || !email.includes('@')) {
-        showToast('error', 'Oops!', 'Please enter a valid email');
-        return;
-    }
-
-    closePopup();
-    showToast('success', 'Subscribed!', `Welcome ${name}! Your 20% OFF coupon: SAVE20`);
+    if (modalOverlayEl) modalOverlayEl.classList.remove('active');
+    document.body.style.overflow = 'auto';
 }
 
-// ── Toast Notification ──
-const toast = document.getElementById('toast');
-let toastTimeout;
+if (cartIconLink) {
+    cartIconLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (cartSidebarEl) cartSidebarEl.classList.add('active');
+        if (cartOverlayEl) cartOverlayEl.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
 
-function showToast(type, title, message) {
-    const toastTitle = document.getElementById('toast-title');
-    const toastText = document.getElementById('toast-text');
-    const toastIcon = document.querySelector('.toast-icon i');
+if (closeCartEl) closeCartEl.addEventListener('click', closeCartSidebarSafe);
+if (cartOverlayEl) cartOverlayEl.addEventListener('click', closeCartSidebarSafe);
+if (continueShoppingEl) continueShoppingEl.addEventListener('click', closeCartSidebarSafe);
+if (modalCloseEl) modalCloseEl.addEventListener('click', closeModalSafe);
+if (modalOverlayEl) modalOverlayEl.addEventListener('click', closeModalSafe);
 
-    toastTitle.textContent = title;
-    toastText.textContent = message;
+if (scrollTopBtnEl) {
+    scrollTopBtnEl.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
-    if (type === 'error') {
-        toast.classList.add('error');
-        toastIcon.className = 'fas fa-times-circle';
-    } else {
-        toast.classList.remove('error');
-        toastIcon.className = 'fas fa-check-circle';
+// ── Scroll Events ──
+window.addEventListener('scroll', () => {
+    const headerEl = getQuery('.header');
+    if (headerEl) {
+        if (window.scrollY > 80) {
+            headerEl.classList.add('scrolled');
+        } else {
+            headerEl.classList.remove('scrolled');
+        }
     }
+    if (scrollTopBtnEl) {
+        if (window.scrollY > 300) {
+            scrollTopBtnEl.classList.add('visible');
+        } else {
+            scrollTopBtnEl.classList.remove('visible');
+        }
+    }
+});
 
-    toast.classList.add('active');
-
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-        closeToast();
-    }, 4000);
-}
-
-function closeToast() {
-    toast.classList.remove('active');
-}
-
-// ── Update addToCart to use Toast ──
-function addToCart(button) {
+// ── Modal Add to Cart ──
+function modalAddToCart() {
     cartCount++;
-    document.querySelector('.cart-badge').textContent = cartCount;
-    button.textContent = '✅ Added!';
-    button.style.background = '#28a745';
-    showToast('success', 'Added to Cart!', 'Item successfully added to your cart');
-
-    setTimeout(() => {
-        button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-        button.style.background = '#1a1a2e';
-    }, 2000);
-}
-// ── Update Header Based on Login State ──
-const isLoggedIn = localStorage.getItem('isLoggedIn');
-const userName = localStorage.getItem('userName');
-const loginBtn = document.querySelector('.login-btn');
-
-if (loginBtn) {
-    if (isLoggedIn === 'true' && userName) {
-        loginBtn.innerHTML = `<i class="fas fa-user"></i> ${userName}`;
-        loginBtn.href = '#';
-        loginBtn.onclick = function() {
-            if (confirm('Do you want to logout?')) {
-                localStorage.removeItem('isLoggedIn');
-                localStorage.removeItem('userName');
-                localStorage.removeItem('userEmail');
-                window.location.href = 'auth.html';
-            }
-        };
+    localStorage.setItem('cartCount', cartCount);
+    const badge = getQuery('.cart-badge');
+    if (badge) badge.textContent = cartCount;
+    const btn = getQuery('.modal-add-cart');
+    if (btn) {
+        btn.textContent = '✅ Added to Cart!';
+        btn.style.background = '#28a745';
+        showToast('success', 'Added to Cart!', 'Item successfully added to your cart');
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+            btn.style.background = '#e94560';
+            closeModalSafe();
+        }, 1500);
     }
 }
+
+// ── Lazy Loading ──
+window.addEventListener('load', function() {
+    document.querySelectorAll('img').forEach(img => {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+        }
+    });
+});
+
+// ── Lazy Style ──
+const lazyStyle = document.createElement('style');
+lazyStyle.textContent = `
+    img { opacity: 0; transition: opacity 0.3s ease; }
+    img.loaded { opacity: 1; }
+`;
+document.head.appendChild(lazyStyle);
