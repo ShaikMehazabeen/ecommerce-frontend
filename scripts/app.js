@@ -8,7 +8,6 @@ if (hamburger) {
     });
 }
 
-// ── Close menu when link clicked ──
 document.querySelectorAll('.navbar ul li a').forEach(link => {
     link.addEventListener('click', () => {
         if (navbar) navbar.classList.remove('active');
@@ -38,14 +37,8 @@ function addToCart(button) {
 function subscribeNewsletter() {
     const input = document.querySelector('.newsletter-form input');
     const email = input.value.trim();
-    if (email === '') {
-        alert('Please enter your email!');
-        return;
-    }
-    if (!email.includes('@')) {
-        alert('Please enter a valid email!');
-        return;
-    }
+    if (email === '') { alert('Please enter your email!'); return; }
+    if (!email.includes('@')) { alert('Please enter a valid email!'); return; }
     alert('✅ Thank you for subscribing with ' + email + '!');
     input.value = '';
 }
@@ -123,51 +116,14 @@ const quickViewModal = document.getElementById('quick-view-modal');
 const modalClose = document.getElementById('modal-close');
 
 const products = [
-    {
-        title: 'Premium Smart Watch',
-        category: 'Electronics',
-        price: '8,299/-',
-        oldPrice: '12,499/-',
-        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500'
-    },
-    {
-        title: 'Running Sneakers',
-        category: 'Fashion',
-        price: '4,999/-',
-        oldPrice: '7,499/-',
-        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500'
-    },
-    {
-        title: 'Wireless Headphones',
-        category: 'Electronics',
-        price: '6,599/-',
-        oldPrice: '10,799/-',
-        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'
-    },
-    {
-        title: 'Modern Desk Lamp',
-        category: 'Home',
-        price: '3,299/-',
-        oldPrice: '4,999/-',
-        image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500'
-    },
-    {
-        title: 'Leather Handbag',
-        category: 'Fashion',
-        price: '4,199/-',
-        oldPrice: '6,599/-',
-        image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500'
-    },
-    {
-        title: 'Indoor Plant Set',
-        category: 'Home',
-        price: '2,499/-',
-        oldPrice: '3,749/-',
-        image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500'
-    }
+    { title: 'Premium Smart Watch', category: 'Electronics', price: '8,299/-', oldPrice: '12,499/-', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500' },
+    { title: 'Running Sneakers', category: 'Fashion', price: '4,999/-', oldPrice: '7,499/-', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500' },
+    { title: 'Wireless Headphones', category: 'Electronics', price: '6,599/-', oldPrice: '10,799/-', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500' },
+    { title: 'Modern Desk Lamp', category: 'Home', price: '3,299/-', oldPrice: '4,999/-', image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500' },
+    { title: 'Leather Handbag', category: 'Fashion', price: '4,199/-', oldPrice: '6,599/-', image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500' },
+    { title: 'Indoor Plant Set', category: 'Home', price: '2,499/-', oldPrice: '3,749/-', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500' }
 ];
 
-// Open Modal
 document.querySelectorAll('.quick-view').forEach((btn, index) => {
     btn.addEventListener('click', () => {
         const product = products[index];
@@ -199,9 +155,7 @@ function modalIncreaseQty() {
 
 function modalDecreaseQty() {
     const qty = document.getElementById('modal-qty');
-    if (parseInt(qty.textContent) > 1) {
-        qty.textContent = parseInt(qty.textContent) - 1;
-    }
+    if (parseInt(qty.textContent) > 1) qty.textContent = parseInt(qty.textContent) - 1;
 }
 
 function modalAddToCart() {
@@ -277,19 +231,13 @@ if (popupOverlay) popupOverlay.addEventListener('click', closePopup);
 function subscribePopup() {
     const name = document.getElementById('popup-name').value.trim();
     const email = document.getElementById('popup-email').value.trim();
-    if (name === '') {
-        showToast('error', 'Oops!', 'Please enter your name');
-        return;
-    }
-    if (email === '' || !email.includes('@')) {
-        showToast('error', 'Oops!', 'Please enter a valid email');
-        return;
-    }
+    if (name === '') { showToast('error', 'Oops!', 'Please enter your name'); return; }
+    if (email === '' || !email.includes('@')) { showToast('error', 'Oops!', 'Please enter a valid email'); return; }
     closePopup();
     showToast('success', 'Subscribed!', 'Welcome ' + name + '! Your 20% OFF coupon: SAVE20');
 }
 
-// ── Toast Notification ──
+// ── Toast ──
 const toast = document.getElementById('toast');
 let toastTimeout;
 
@@ -301,10 +249,10 @@ function showToast(type, title, message) {
     if (toastText) toastText.textContent = message;
     if (toastIcon) {
         if (type === 'error') {
-            toast.classList.add('error');
+            if (toast) toast.classList.add('error');
             toastIcon.className = 'fas fa-times-circle';
         } else {
-            toast.classList.remove('error');
+            if (toast) toast.classList.remove('error');
             toastIcon.className = 'fas fa-check-circle';
         }
     }
@@ -317,24 +265,16 @@ function closeToast() {
     if (toast) toast.classList.remove('active');
 }
 
-// ── Sticky Header & Scroll to Top ──
+// ── Sticky Header & Scroll Top ──
 const scrollTopBtn = document.getElementById('scroll-top');
 
 window.addEventListener('scroll', () => {
     const headerEl = document.querySelector('.header');
     if (headerEl) {
-        if (window.scrollY > 80) {
-            headerEl.classList.add('scrolled');
-        } else {
-            headerEl.classList.remove('scrolled');
-        }
+        headerEl.classList.toggle('scrolled', window.scrollY > 80);
     }
     if (scrollTopBtn) {
-        if (window.scrollY > 300) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
     }
 });
 
@@ -348,7 +288,6 @@ if (scrollTopBtn) {
 const isLoggedIn = localStorage.getItem('isLoggedIn');
 const userName = localStorage.getItem('userName');
 const loginBtn = document.querySelector('.login-btn');
-
 if (loginBtn && isLoggedIn === 'true' && userName) {
     loginBtn.innerHTML = '<i class="fas fa-user"></i> ' + userName;
 }
@@ -366,13 +305,6 @@ window.addEventListener('load', function() {
     });
 });
 
-// ── Lazy Style ──
-const lazyStyle = document.createElement('style');
-lazyStyle.textContent = `
-    img { opacity: 0; transition: opacity 0.3s ease; }
-    img.loaded { opacity: 1; }
-`;
-document.head.appendChild(lazyStyle);
 
 // ── Prefetch on Hover ──
 document.querySelectorAll('a[href]').forEach(link => {
@@ -387,4 +319,4 @@ document.querySelectorAll('a[href]').forEach(link => {
     }, { once: true });
 });
 
-console.log("E-Commerce Website Loaded");
+console.log("E-Commerce Website Loaded ✅");

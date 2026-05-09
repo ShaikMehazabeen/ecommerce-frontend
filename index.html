@@ -35,10 +35,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Performance -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="theme-color" content="#1a1a2e">
+
+<!-- Preload Critical Resources -->
+<link rel="preload" href="styles/main.css" as="style">
+<link rel="preload" href="scripts/app.js" as="script">
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+
+<!-- DNS Prefetch -->
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://images.unsplash.com">
     <title>E-Commerce Frontend</title>
     <link rel="stylesheet" href="styles/main.css">
     <!-- Font Awesome for icons -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</noscript>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
 </head>
 <body>
@@ -647,6 +665,6 @@
             <i class="fas fa-times"></i>
         </button>
     </div>
-
+    <script defer src="scripts/app.js"></script>
     </body>
 </html>                        

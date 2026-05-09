@@ -76,38 +76,42 @@ const productId = parseInt(urlParams.get('id'));
 let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
 
 // ── Load Product Immediately ──
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
 
     const loading = document.getElementById('loading');
     const content = document.getElementById('product-detail-content');
 
     // Find product
-    const product = products.find(p => p.id === productId);
+    const product = products.find(function(p) { return p.id === productId; });
 
     // If not found
     if (!product) {
-        loading.innerHTML = `
-            <p style="font-size:18px;color:#e94560;text-align:center">
-                Product not found!
-                <br><br>
-                <a href="index.html" style="color:#1a1a2e;font-weight:bold">
-                ← Go Back
-                </a>
-            </p>
-        `;
+        if (loading) {
+            loading.innerHTML = `
+                <p style="font-size:18px;color:#e94560;text-align:center">
+                    Product not found!
+                    <br><br>
+                    <a href="index.html" style="color:#1a1a2e;font-weight:bold">
+                    ← Go Back
+                    </a>
+                </p>
+            `;
+        }
         return;
     }
 
     // Update cart badge
-    document.querySelector('.cart-badge').textContent = cartCount;
+    const cartBadge = document.querySelector('.cart-badge');
+    if (cartBadge) cartBadge.textContent = cartCount;
 
     // Update page title
     document.title = product.title + ' - ShopEasy';
 
     // Update breadcrumb
-    document.getElementById('breadcrumb-title').textContent = product.title;
+    const breadcrumb = document.getElementById('breadcrumb-title');
+    if (breadcrumb) breadcrumb.textContent = product.title;
 
-    // Update all product details
+    // Update product details
     document.getElementById('main-image').src = product.image;
     document.getElementById('detail-badge').textContent = product.badge;
     document.getElementById('detail-category').textContent = product.category;
@@ -119,19 +123,21 @@ window.onload = function() {
 
     // Add thumbnails
     const thumbnails = document.getElementById('thumbnails');
-    thumbnails.innerHTML = '';
-    for (let i = 0; i < 4; i++) {
-        const img = document.createElement('img');
-        img.src = product.image;
-        img.alt = product.title;
-        if (i === 0) img.classList.add('active');
-        img.onclick = function() {
-            document.getElementById('main-image').src = this.src;
-            document.querySelectorAll('.thumbnail-images img')
-                .forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-        };
-        thumbnails.appendChild(img);
+    if (thumbnails) {
+        thumbnails.innerHTML = '';
+        for (let i = 0; i < 4; i++) {
+            const img = document.createElement('img');
+            img.src = product.image;
+            img.alt = product.title;
+            if (i === 0) img.classList.add('active');
+            img.onclick = function() {
+                document.getElementById('main-image').src = this.src;
+                document.querySelectorAll('.thumbnail-images img')
+                    .forEach(function(t) { t.classList.remove('active'); });
+                this.classList.add('active');
+            };
+            thumbnails.appendChild(img);
+        }
     }
 
     // Load related products
@@ -141,48 +147,51 @@ window.onload = function() {
     });
 
     if (related.length === 0) {
-        document.querySelector('.related-products').style.display = 'none';
+        const relatedSection = document.querySelector('.related-products');
+        if (relatedSection) relatedSection.style.display = 'none';
     } else {
-        relatedGrid.innerHTML = related.map(function(p) {
-            return `
-                <div class="product-card">
-                    <div class="product-image">
-                        <a href="product.html?id=${p.id}">
-                            <img src="${p.image}" alt="${p.title}">
-                        </a>
-                        <span class="product-badge">${p.badge}</span>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-category">${p.category}</span>
-                        <h3><a href="product.html?id=${p.id}">${p.title}</a></h3>
-                        <div class="product-price">
-                            <span class="current-price">${p.price}</span>
-                            <span class="old-price">${p.oldPrice}</span>
+        if (relatedGrid) {
+            relatedGrid.innerHTML = related.map(function(p) {
+                return `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <a href="product.html?id=${p.id}">
+                                <img src="${p.image}" alt="${p.title}">
+                            </a>
+                            <span class="product-badge">${p.badge}</span>
                         </div>
-                        <button class="add-to-cart" 
-                            onclick="addToCartRelated('${p.title}')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
+                        <div class="product-info">
+                            <span class="product-category">${p.category}</span>
+                            <h3><a href="product.html?id=${p.id}">${p.title}</a></h3>
+                            <div class="product-price">
+                                <span class="current-price">${p.price}</span>
+                                <span class="old-price">${p.oldPrice}</span>
+                            </div>
+                            <button class="add-to-cart"
+                                onclick="addToCartRelated('${p.title}')">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
                     </div>
-                </div>
-            `;
-        }).join('');
+                `;
+            }).join('');
+        }
     }
 
-    // Hide spinner show content
-    loading.style.display = 'none';
-    content.style.display = 'grid';
-};
+    // Hide spinner show content instantly
+    if (loading) loading.style.display = 'none';
+    if (content) content.style.display = 'grid';
+});
 
 // ── Quantity Controls ──
 function detailIncreaseQty() {
     const qty = document.getElementById('detail-qty');
-    qty.textContent = parseInt(qty.textContent) + 1;
+    if (qty) qty.textContent = parseInt(qty.textContent) + 1;
 }
 
 function detailDecreaseQty() {
     const qty = document.getElementById('detail-qty');
-    if (parseInt(qty.textContent) > 1) {
+    if (qty && parseInt(qty.textContent) > 1) {
         qty.textContent = parseInt(qty.textContent) - 1;
     }
 }
@@ -191,40 +200,54 @@ function detailDecreaseQty() {
 function detailAddToCart() {
     cartCount++;
     localStorage.setItem('cartCount', cartCount);
-    document.querySelector('.cart-badge').textContent = cartCount;
+    const badge = document.querySelector('.cart-badge');
+    if (badge) badge.textContent = cartCount;
     const btn = document.querySelector('.detail-add-cart');
-    btn.textContent = '✅ Added to Cart!';
-    btn.style.background = '#28a745';
-    showToast('Added to Cart!', 'Item successfully added to your cart');
-    setTimeout(function() {
-        btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-        btn.style.background = '#e94560';
-    }, 2000);
+    if (btn) {
+        btn.textContent = '✅ Added to Cart!';
+        btn.style.background = '#28a745';
+        showToast('Added to Cart!', 'Item successfully added to your cart');
+        setTimeout(function() {
+            btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+            btn.style.background = '#e94560';
+        }, 2000);
+    }
 }
 
 function addToCartRelated(title) {
     cartCount++;
     localStorage.setItem('cartCount', cartCount);
-    document.querySelector('.cart-badge').textContent = cartCount;
+    const badge = document.querySelector('.cart-badge');
+    if (badge) badge.textContent = cartCount;
     showToast('Added to Cart!', title + ' added to your cart');
 }
 
 // ── Toast ──
 function showToast(title, message) {
-    document.getElementById('toast-title').textContent = title;
-    document.getElementById('toast-text').textContent = message;
-    document.getElementById('toast').classList.add('active');
-    setTimeout(closeToast, 4000);
+    const toastTitle = document.getElementById('toast-title');
+    const toastText = document.getElementById('toast-text');
+    const toast = document.getElementById('toast');
+    if (toastTitle) toastTitle.textContent = title;
+    if (toastText) toastText.textContent = message;
+    if (toast) {
+        toast.classList.add('active');
+        setTimeout(closeToast, 4000);
+    }
 }
 
 function closeToast() {
-    document.getElementById('toast').classList.remove('active');
+    const toast = document.getElementById('toast');
+    if (toast) toast.classList.remove('active');
 }
 
 // ── Hamburger ──
-document.getElementById('hamburger').addEventListener('click', function() {
-    document.getElementById('navbar').classList.toggle('active');
-});
+const hamburgerBtn = document.getElementById('hamburger');
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', function() {
+        const nav = document.getElementById('navbar');
+        if (nav) nav.classList.toggle('active');
+    });
+}
 
 // ── Color Selection ──
 document.querySelectorAll('.color-btn').forEach(function(btn) {
@@ -245,15 +268,16 @@ document.querySelectorAll('.size-btn').forEach(function(btn) {
 });
 
 // ── Scroll to Top ──
+const scrollBtn = document.getElementById('scroll-top');
+
 window.addEventListener('scroll', function() {
-    const scrollBtn = document.getElementById('scroll-top');
-    if (window.scrollY > 300) {
-        scrollBtn.classList.add('visible');
-    } else {
-        scrollBtn.classList.remove('visible');
+    if (scrollBtn) {
+        scrollBtn.classList.toggle('visible', window.scrollY > 300);
     }
 });
 
-document.getElementById('scroll-top').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
