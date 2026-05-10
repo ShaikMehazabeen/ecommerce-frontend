@@ -53,7 +53,6 @@ const continueShoppingBtn = document.getElementById('continue-shopping');
 function closeCartSidebar() {
     if (cartSidebar) cartSidebar.classList.remove('active');
     if (cartOverlay) cartOverlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
 }
 
 if (cartIconLink) {
@@ -61,7 +60,6 @@ if (cartIconLink) {
         e.preventDefault();
         if (cartSidebar) cartSidebar.classList.add('active');
         if (cartOverlay) cartOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
     });
 }
 
@@ -135,14 +133,13 @@ document.querySelectorAll('.quick-view').forEach((btn, index) => {
         document.getElementById('modal-qty').textContent = '1';
         if (quickViewModal) quickViewModal.classList.add('active');
         if (modalOverlay) modalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'auto';
     });
 });
 
 function closeModal() {
-    if (quickViewModal) quickViewModal.classList.remove('active');
-    if (modalOverlay) modalOverlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    if (quickViewModal) quickViewModal.classList.add('active');
+    if (modalOverlay) modalOverlay.classList.add('active');
 }
 
 if (modalClose) modalClose.addEventListener('click', closeModal);
@@ -213,10 +210,14 @@ const popupClose = document.getElementById('popup-close');
 const popupSkip = document.getElementById('popup-skip');
 
 setTimeout(() => {
-    if (newsletterPopup) newsletterPopup.classList.add('active');
-    if (popupOverlay) popupOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}, 3000);
+    if (newsletterPopup) {
+        newsletterPopup.classList.add('active');
+    }
+    if (popupOverlay) {
+        popupOverlay.classList.add('active');
+    }
+    document.body.style.overflow = 'auto';
+}, 5000);
 
 function closePopup() {
     if (newsletterPopup) newsletterPopup.classList.remove('active');
@@ -291,19 +292,6 @@ const loginBtn = document.querySelector('.login-btn');
 if (loginBtn && isLoggedIn === 'true' && userName) {
     loginBtn.innerHTML = '<i class="fas fa-user"></i> ' + userName;
 }
-
-// ── Lazy Loading ──
-window.addEventListener('load', function() {
-    document.querySelectorAll('img').forEach(img => {
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
-            img.addEventListener('load', function() {
-                this.classList.add('loaded');
-            });
-        }
-    });
-});
 
 
 // ── Prefetch on Hover ──

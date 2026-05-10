@@ -1,3 +1,12 @@
+/* ── Fix Scroll Issue ── */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: auto !important;
+}
 /* ── Performance Optimizations ── */
 * {
     -webkit-font-smoothing: antialiased;
