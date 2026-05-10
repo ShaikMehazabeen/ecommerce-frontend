@@ -7,24 +7,7 @@ body {
     overflow-x: hidden;
     overflow-y: auto !important;
 }
-/* ── Performance Optimizations ── */
-* {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    content-visibility: auto;
-}
-
-/* ── Preload Critical Images ── */
-.hero-image img {
-    loading: eager;
-    fetchpriority: high;
-}
 /* ── Reset & Base ── */
 * {
     margin: 0;
@@ -205,7 +188,6 @@ a {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     min-height: 90vh;
     color: white;
-    overflow: hidden;
 }
 
 /* ── Hero Content ── */
